@@ -1,6 +1,6 @@
 import randomizer from "../utils/randomizer";
 
-const Card = ({ cards, setCards }) => {
+const Card = ({ cards, setCards, setScore, setHighScore }) => {
 	const sortedList = cards.sort((a, b) => a.location - b.location);
 
 	const handleClick = () => {

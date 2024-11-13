@@ -19,11 +19,19 @@ function App() {
 		{ id: 12, name: "test12", location: 12, src: "...", alt: "..." },
 	]);
 
+	const [score, setScore] = useState(0);
+	const [highScore, setHighScore] = useState(0);
+
 	return (
 		<>
-			<Header />
+			<Header score={score} highScore={highScore} />
 			<Instructions />
-			<Card cards={list} setCards={setList} />
+			<Card
+				cards={list}
+				setCards={setList}
+				setScore={setScore}
+				setHighScore={setHighScore}
+			/>
 		</>
 	);
 }
