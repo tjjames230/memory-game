@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Header from "./components/Header";
 import Card from "./components/Card";
 
 function App() {
@@ -17,7 +18,12 @@ function App() {
 		{ id: 12, name: "test12", location: 12, src: "...", alt: "..." },
 	]);
 
-	return <Card cards={list} setCards={setList} />;
+	return (
+		<>
+			<Header />
+			<Card cards={list} setCards={setList} />
+		</>
+	);
 }
 
 export default App;
