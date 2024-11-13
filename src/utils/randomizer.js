@@ -1,57 +1,38 @@
-const randomizer = () => {
-	const test = [
-		{
-			name: 1,
-			location: 1,
-		},
-		{
-			name: 2,
-			location: 2,
-		},
-		{
-			name: 3,
-			location: 3,
-		},
-		{
-			name: 4,
-			location: 4,
-		},
-		{
-			name: 5,
-			location: 5,
-		},
-	];
-
-	const copy = [...test];
+const randomizer = (arr) => {
+	const copy = [...arr];
 	const uniqueNumbers = createUniqueNumbers();
 
 	function createUniqueNumbers() {
-		const arr = [];
+		const tempArr = [];
 
 		// initial random numbers
-		for (let i = 0; i < test.length; i++) {
-			arr.push(Math.floor(Math.random() * test.length + 1));
+		for (let i = 0; i < arr.length; i++) {
+			tempArr.push(Math.floor(Math.random() * arr.length + 1));
 		}
 
 		// loop through to check if numbers match any others and reassign until unique
-		while (hasDuplicates(arr)) {
-			for (let i = 0; i < arr.length; i++) {
-				for (let j = i + 1; j < arr.length; j++) {
-					if (arr[i] == arr[j]) {
-						arr[i] = Math.floor(Math.random() * test.length + 1);
+		while (hasDuplicates(tempArr)) {
+			for (let i = 0; i < tempArr.length; i++) {
+				for (let j = i + 1; j < tempArr.length; j++) {
+					if (tempArr[i] == tempArr[j]) {
+						tempArr[i] = Math.floor(Math.random() * arr.length + 1);
 					}
 				}
 			}
 		}
 
-		return arr;
+		return tempArr;
 	}
 
 	function hasDuplicates(arr) {
 		return new Set(arr).size !== arr.length;
 	}
 
-	console.log(uniqueNumbers);
+	for (let i = 0; i < copy.length; i++) {
+		copy[i].location = uniqueNumbers[i];
+	}
+
+	return copy;
 };
 
 export default randomizer;

@@ -1,7 +1,14 @@
 import randomizer from "../utils/randomizer";
 
-const Card = ({ cards }) => {
+const Card = ({ cards, setCards }) => {
 	const sortedList = cards.sort((a, b) => a.location - b.location);
+
+	const handleClick = () => {
+		const tempCards = randomizer(cards);
+		setCards(tempCards);
+
+		console.log(cards);
+	};
 
 	const cardList = sortedList.map((card) => {
 		return (
@@ -17,7 +24,7 @@ const Card = ({ cards }) => {
 						Some quick text to build on the card title and make up the bulk of
 						the card&apos;s content.
 					</p>
-					<a href="#" className="btn btn-primary" onClick={randomizer}>
+					<a href="#" className="btn btn-primary" onClick={handleClick}>
 						Go somewhere
 					</a>
 				</div>
@@ -25,7 +32,11 @@ const Card = ({ cards }) => {
 		);
 	});
 
-	return <main className="d-flex flex-row">{cardList}</main>;
+	return (
+		<main className="d-flex flex-row flex-wrap row-gap-4 column-gap-4 justify-content-center">
+			{cardList}
+		</main>
+	);
 };
 
 export default Card;
