@@ -1,13 +1,24 @@
 import randomizer from "../utils/randomizer";
 
-const Card = ({ cards, setCards, setScore, setHighScore }) => {
+const Card = ({
+	cards,
+	setCards,
+	score,
+	setScore,
+	highScore,
+	setHighScore,
+}) => {
 	const sortedList = cards.sort((a, b) => a.location - b.location);
 
-	const handleClick = () => {
+	const handleClick = (card) => {
 		const tempCards = randomizer(cards);
 		setCards(tempCards);
+		increaseScore();
+		console.log(card);
+	};
 
-		console.log(cards);
+	const increaseScore = () => {
+		setScore(score + 1);
 	};
 
 	const cardList = sortedList.map((card) => {
@@ -24,7 +35,11 @@ const Card = ({ cards, setCards, setScore, setHighScore }) => {
 						Some quick text to build on the card title and make up the bulk of
 						the card&apos;s content.
 					</p>
-					<a href="#" className="btn btn-primary" onClick={handleClick}>
+					<a
+						href="#"
+						className="btn btn-primary"
+						onClick={() => handleClick(card)}
+					>
 						Go somewhere
 					</a>
 				</div>

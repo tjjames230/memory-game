@@ -29,7 +29,9 @@ function App() {
 			<Card
 				cards={list}
 				setCards={setList}
+				score={score}
 				setScore={setScore}
+				highScore={highScore}
 				setHighScore={setHighScore}
 			/>
 		</>
