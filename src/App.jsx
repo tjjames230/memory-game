@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Header from "./components/Header";
+import Instructions from "./components/Instructions";
 import Card from "./components/Card";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
 	return (
 		<>
 			<Header />
+			<Instructions />
 			<Card cards={list} setCards={setList} />
 		</>
 	);
