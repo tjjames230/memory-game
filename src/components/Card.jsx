@@ -1,3 +1,4 @@
+import { useState } from "react";
 import randomizer from "../utils/randomizer";
 
 const Card = ({
@@ -10,11 +11,30 @@ const Card = ({
 }) => {
 	const sortedList = cards.sort((a, b) => a.location - b.location);
 
+	const [cardIds, setCardIds] = useState([]);
+
+	const reset = () => {
+		setCardIds([]);
+		setScore(0);
+	};
+
 	const handleClick = (card) => {
 		const tempCards = randomizer(cards);
 		setCards(tempCards);
-		increaseScore();
-		console.log(card);
+
+		if (!cardIds.includes(card.id)) {
+			const tempIds = [...cardIds];
+			increaseScore();
+			tempIds.push(card.id);
+			setCardIds(tempIds);
+			console.log(cardIds);
+		} else {
+			if (score > highScore) {
+				setHighScore(score);
+			}
+
+			reset();
+		}
 	};
 
 	const increaseScore = () => {
