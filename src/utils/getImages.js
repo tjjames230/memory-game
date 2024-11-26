@@ -1,27 +1,19 @@
 const getImages = async () => {
-	const urlPageOne = "https://swapi.dev/api/people/";
-	const urlPageTwo = "https://swapi.dev/api/people/?page=2";
+	const url = "https://pokeapi.co/api/v2/pokemon/1/";
 	const data = [];
 
 	try {
-		const [response1, response2] = await Promise.all([
-			fetch(urlPageOne),
-			fetch(urlPageTwo),
-		]);
+		const response = await fetch(url);
 
-		if (!response1.ok || !response2.ok) {
-			throw new Error(`One or more requests failed`);
+		if (!response.ok) {
+			throw new Error(`request failed`);
 		}
 
-		const people1 = await response1.json();
-		const people2 = await response2.json();
+		const pokemon = await response.json();
+		console.log(pokemon);
 
-		for (let i = 0; i < people1.results.length; i++) {
-			data.push(people1.results[i]);
-		}
-
-		for (let i = 0; i < 2; i++) {
-			data.push(people2.results[i]);
+		for (let i = 0; i < 12; i++) {
+			data.push(pokemon.results[i]);
 		}
 	} catch (error) {
 		console.error(error.message);

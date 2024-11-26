@@ -17,7 +17,18 @@ function App() {
 		fetchData();
 	}, []);
 
-	console.log(data);
+	useEffect(() => {
+		if (data) {
+			const initialArr = data.map((item, index) => ({
+				id: index + 1,
+				name: item.name,
+				location: index + 1,
+				src: item.url,
+				alt: item.name,
+			}));
+			setList(initialArr);
+		}
+	}, [data]);
 
 	// { id: 1, name: "test1", location: 1, src: "...", alt: "..." },
 	// { id: 2, name: "test2", location: 2, src: "...", alt: "..." },
