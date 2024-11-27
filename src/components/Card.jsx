@@ -43,23 +43,17 @@ const Card = ({
 
 	const cardList = sortedList.map((card) => {
 		return (
-			<div
-				key={card.id}
-				className="card bg-secondary"
-				style={{ width: "18rem" }}
-			>
-				<img src={card.src} className="card-img-top" alt={card.alt}></img>
-				<div className="card-body">
-					<h5 className="card-title">{card.name}</h5>
-					<p className="card-text">
-						Some quick text to build on the card title and make up the bulk of
-						the card&apos;s content.
-					</p>
-					<a className="btn btn-primary" onClick={() => handleClick(card)}>
-						Go somewhere
-					</a>
+			<a key={card.id} onClick={() => handleClick(card)}>
+				<div
+					className="card bg-light shadow"
+					style={{ width: "18rem", cursor: "pointer" }}
+				>
+					<img src={card.src} className="card-img-top" alt={card.alt}></img>
+					<div className="card-body">
+						<h5 className="card-title text-center">{card.name}</h5>
+					</div>
 				</div>
-			</div>
+			</a>
 		);
 	});
 
