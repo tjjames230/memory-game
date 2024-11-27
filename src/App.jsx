@@ -13,7 +13,6 @@ function App() {
 			const result = await getImages();
 			setData(result);
 		};
-
 		fetchData();
 	}, []);
 
@@ -21,9 +20,9 @@ function App() {
 		if (data) {
 			const initialArr = data.map((item, index) => ({
 				id: index + 1,
-				name: item.name,
+				name: cleanNames(item.name),
 				location: index + 1,
-				src: item.url,
+				src: item.sprites.front_default,
 				alt: item.name,
 			}));
 			setList(initialArr);
@@ -61,6 +60,10 @@ function App() {
 			/>
 		</>
 	);
+}
+
+function cleanNames(str) {
+	return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 export default App;
